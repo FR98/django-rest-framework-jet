@@ -7,19 +7,21 @@ Detailed documentation is in the "docs" directory.
 Quick start
 -----------
 
-*Install Django Rest Framework.
+* Install Django Rest Framework.
 
-*Add "rest_framework_jet" to your INSTALLED_APPS setting like this:
+* Add "rest_framework_jet" to your INSTALLED_APPS setting like this:
 
-    ```INSTALLED_APPS = [
+    ``` shell
+    INSTALLED_APPS = [
         ...
         'rest_framework_jet',
     ]
     ```
 
-*Configure JET
+* Configure JET
 
-    ```REST_FRAMEWORK = {
+    ``` shell
+    REST_FRAMEWORK = {
         'DEFAULT_AUTHENTICATION_CLASSES': (
             'rest_framework_jet.authentication.JETAuthentication',
         )
@@ -30,13 +32,13 @@ Quick start
     )
     ```
 
-*Include the rest_framework_jet URLconf in your project urls.py like this:
+* Include the rest_framework_jet URLconf in your project urls.py like this:
 
-    *url(r'^api/token-auth/', generate_jet),
-    *url(r'^api/token-verify/', verify_jet),
-    *url(r'^api/token-refresh/', refresh_jet),
+    * url(r'^api/token-auth/', generate_jet),
+    * url(r'^api/token-verify/', verify_jet),
+    * url(r'^api/token-refresh/', refresh_jet),
 
-*Start the development server
+* Start the development server
 
-*Visit http://127.0.0.1:8000/api/token-auth/
+* Visit http://127.0.0.1:8000/api/token-auth/
    to authenticate a user and generate a valid token.
