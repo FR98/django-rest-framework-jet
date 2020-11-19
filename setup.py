@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="django-rest-framework-jet",
-    version="0.0.4",
+    version="0.0.5",
     author="Francisco Rosal",
     author_email="ros18676@uvg.edu.gt",
     description="JET - Django APP",
