@@ -18,13 +18,25 @@ Quick start
         'rest_framework_jet',
     ]
 
-3. Include the rest_framework_jet URLconf in your project urls.py like this::
+3. Configure JET
+
+    REST_FRAMEWORK = {
+        'DEFAULT_AUTHENTICATION_CLASSES': (
+            'rest_framework_jet.authentication.JETAuthentication',
+        )
+    }
+
+    GLOBAL_JET = JET(
+        SECRET = SECRET_KEY
+    )
+
+4. Include the rest_framework_jet URLconf in your project urls.py like this::
 
     url(r'^api/token-auth/', generate_jet),
     url(r'^api/token-verify/', verify_jet),
     url(r'^api/token-refresh/', refresh_jet),
 
-4. Start the development server
+5. Start the development server
 
-5. Visit http://127.0.0.1:8000/api/token-auth/
+6. Visit http://127.0.0.1:8000/api/token-auth/
    to authenticate a user and generate a valid token.

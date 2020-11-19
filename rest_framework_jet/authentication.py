@@ -1,8 +1,9 @@
 from django.contrib.auth.models import User
 from django.utils.encoding import smart_str
+from django.conf import settings
+
 from rest_framework import authentication, exceptions
 
-from jetDjango.settings import GLOBAL_JET
 from jet.utils import hmac_sha256
 from jet.exceptions import JETException
 
@@ -17,7 +18,7 @@ class JETAuthentication(authentication.BaseAuthentication):
         token = smart_str(token)
 
         try:
-            decrypted_meta, decrypted_payload = GLOBAL_JET.decrypt_from_PK(token)
+            decrypted_meta, decrypted_payload = settings.GLOBAL_JET.decrypt_from_PK(token)
         except JETException:
             raise exceptions.AuthenticationFailed('Bad token')
 

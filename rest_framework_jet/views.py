@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate
+from django.conf import settings
 
 from rest_framework import exceptions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from jetDjango.settings import GLOBAL_JET
 from jet.utils import hmac_sha256
 
 
@@ -32,7 +32,7 @@ class GenerateJET(APIView):
         }
 
         user_secret = hmac_sha256(username, password, 'ascii')
-        token = GLOBAL_JET.encrypt(user_secret, payload)
+        token = settings.GLOBAL_JET.encrypt(user_secret, payload)
         return Response({ "token": token })
 
 
@@ -44,7 +44,7 @@ class VerifyJET(APIView):
         if not token:
             raise exceptions.AuthenticationFailed('A token has not been generated')
 
-        is_valid_token = GLOBAL_JET.is_valid_token(token)
+        is_valid_token = settings.GLOBAL_JET.is_valid_token(token)
         return Response({ "valid": is_valid_token })
 
 
@@ -57,7 +57,7 @@ class RefreshJET(APIView):
         if not token:
             raise exceptions.AuthenticationFailed('A token has not been generated')
 
-        new_token = GLOBAL_JET.refresh_token(token)
+        new_token = settings.GLOBAL_JET.refresh_token(token)
         return Response({ "token": new_token })
 
 
