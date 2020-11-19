@@ -59,8 +59,11 @@ class RefreshJET(APIView):
         if not token:
             raise exceptions.AuthenticationFailed('A token has not been generated')
 
-        new_token = settings.GLOBAL_JET.refresh_token(token)
-        return Response({ "token": new_token })
+        try:
+            new_token = settings.GLOBAL_JET.refresh_token(token)
+            return Response({ "token": new_token })
+        except:
+            return Response(status=500)
 
 
 generate_jet = GenerateJET.as_view()
