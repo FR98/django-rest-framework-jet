@@ -31,7 +31,7 @@ setuptools.setup(
     ],
     install_requires=[
         'djangorestframework==3.11.0',
-        'json-encrypted-token==0.0.5',
+        'json-encrypted-token',
     ],
     python_requires='>=3.6',
 )
